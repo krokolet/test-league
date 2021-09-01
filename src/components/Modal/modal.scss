@@ -1,0 +1,57 @@
+.modal {
+    // display: none;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    pointer-events: none;
+
+    &__window {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 14px;
+        width: 619px;
+        height: 425px;
+        margin-top: 181px;
+        padding: 30px;
+        background: white;
+        pointer-events: auto;
+        position: relative;
+    }
+
+    &__columnLeft {
+        width: 331px;
+    }
+
+    &__photo {
+        width: 331px;
+        height: 205px;
+    }
+
+    &__formComment {
+        margin-top: 29px;
+    }
+
+    &__comments {
+        width: 214px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    &__closeBtn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 18px;
+        height: 18px;
+        background: url('./../Close.svg') no-repeat center;
+        border: none;
+        padding: 0;
+    }
+}

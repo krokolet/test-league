@@ -1,0 +1,15 @@
+.comment {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+
+    &__date {
+        color: #999999;
+    }
+
+    &__text {
+        color: #000000;
+    }
+}

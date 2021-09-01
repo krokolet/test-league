@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    src: url('./fonts/RobotoCondensed/RobotoCondensed-Regular.ttf');
+    font-family: 'RobotoCondensed';
+    weight: 400;
+}
+
+.App {
+    padding: 15px 20px 0px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.title {
+    font-family: 'RobotoCondensed';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42.2px;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+.photoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 30px;
+    column-gap: 20px;
+    padding-top: 30px;
+}
+
+.footer {
+    height: 56px;
+    width: 100%;
+    border-top: 1px solid #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__text {
+        font-family: Roboto Condensed;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
+        text-transform: uppercase;
+        color: #cccccc;
+    }
+}
