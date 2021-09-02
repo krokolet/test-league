@@ -2,7 +2,7 @@ import FormComment from '../FormComment/FormComment';
 import Comment from '../Comment/Comment';
 import './modal.scss';
 
-const Modal = () => {
+const Modal = ({ changeModalVisible }) => {
     return (
         <div className="modal">
             <div className="modal__window">
@@ -21,7 +21,10 @@ const Modal = () => {
                     <Comment />
                     <Comment />
                 </div>
-                <button className="modal__closeBtn" />
+                <button
+                    className="modal__closeBtn"
+                    onClick={() => changeModalVisible(false)}
+                />
             </div>
         </div>
     );
