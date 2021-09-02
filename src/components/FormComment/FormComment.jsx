@@ -1,23 +1,28 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
+import sendComment from './../../apiFunctions/sendComment';
 import './formComment.scss';
 
-const FormComment = () => {
-    const { handleSubmit } = useForm();
-    const onSubmit = (data) => alert(JSON.stringify(data));
+const FormComment = (idPhoto) => {
+    const { handleSubmit, register } = useForm();
+    const onSubmit = (values) =>
+        sendComment(idPhoto, {
+            name: values.name,
+            comment: values.comment,
+        });
 
     return (
         <form className="formComment" onSubmit={handleSubmit(onSubmit)}>
             <input
                 className="formComment__input"
-                // {...register('firstName', { required: true })}
+                {...register('name', { required: true })}
                 placeholder="Ваше имя"
             />
 
             <input
                 className="formComment__input"
-                // {...register('lastName', { required: true })}
+                {...register('comment', { required: true })}
                 placeholder="Ваш комментарий"
             />
 

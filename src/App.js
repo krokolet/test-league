@@ -1,40 +1,73 @@
 import './App.scss';
-import Photo from './components/Photo/Photo';
 import Modal from './components/Modal/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
-import k from './img/k.png';
-import r from './img/r.png';
-import k2 from './img/full/k2.jpg';
-import r2 from './img/full/r2.png';
+import * as actions from './store/actions';
 
-function App() {
+const mapStateToProps = ({
+    photoCollection,
+    photoInfoCollection,
+    photoIds,
+}) => ({
+    photoCollection,
+    photoIds,
+    photoInfoCollection,
+});
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getPhotos: () => {
+            dispatch(actions.getPhotos());
+        },
+        getPhotoInfo: (id) => {
+            dispatch(actions.getPhotoInfo(id));
+        },
+    };
+};
+
+const App = ({
+    getPhotos,
+    photoCollection,
+    photoIds,
+    getPhotoInfo,
+    photoInfoCollection,
+}) => {
     const [showModal, changeModalVisible] = useState(false);
     const [idOpenedPhoto, setIdOpenedPhoto] = useState(null);
 
-    const photos = {
-        1: { preview: k, fullSize: k2 },
-        2: { preview: r, fullSize: r2 },
-    };
+    useEffect(() => {
+        getPhotos();
+    }, [getPhotos]);
 
-    const photosIds = ['1', '2'];
+    useEffect(() => {
+        idOpenedPhoto &&
+            !photoInfoCollection[idOpenedPhoto] &&
+            getPhotoInfo(idOpenedPhoto);
+    }, [getPhotoInfo, idOpenedPhoto, photoInfoCollection]);
+
     return (
         <div className="App">
-            {showModal && (
+            {showModal && photoInfoCollection[idOpenedPhoto] && (
                 <Modal
                     closeModal={() => changeModalVisible(false)}
-                    src={photos[idOpenedPhoto].fullSize}
+                    src={photoInfoCollection[idOpenedPhoto].url}
+                    comments={photoInfoCollection[idOpenedPhoto].comments}
+                    idPhoto={idOpenedPhoto}
                 />
             )}
             <div>
                 <header className="title">Test app</header>
                 <main className="photoContainer">
-                    {photosIds.map((id) => (
-                        <Photo
-                            id={id}
-                            openModal={() => changeModalVisible(true)}
-                            setIdOpenedPhoto={setIdOpenedPhoto}
-                            src={photos[id].preview}
+                    {photoIds.map((id) => (
+                        <img
+                            onClick={() => {
+                                setIdOpenedPhoto(id);
+                                changeModalVisible(true);
+                            }}
+                            className="photoPreview"
+                            src={photoCollection[id].url}
+                            alt="Фотография"
                         />
                     ))}
                 </main>
@@ -44,6 +77,6 @@ function App() {
             </footer>
         </div>
     );
-}
+};
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

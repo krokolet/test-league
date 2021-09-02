@@ -2,8 +2,7 @@ import FormComment from '../FormComment/FormComment';
 import Comment from '../Comment/Comment';
 import './modal.scss';
 
-const Modal = ({ closeModal, src }) => {
-    console.log(src);
+const Modal = ({ closeModal, src, comments, idPhoto }) => {
     return (
         <div className="modal">
             <div className="modal__window">
@@ -14,13 +13,13 @@ const Modal = ({ closeModal, src }) => {
                         alt="Фотография в полном размере"
                     />
                     <div className="modal__formComment">
-                        <FormComment />
+                        <FormComment idPhoto={idPhoto} />
                     </div>
                 </div>
                 <div className="modal__comments">
-                    <Comment />
-                    <Comment />
-                    <Comment />
+                    {comments.map((comment) => (
+                        <Comment date={comment.date} text={comment.text} />
+                    ))}
                 </div>
                 <button
                     className="modal__closeBtn"
