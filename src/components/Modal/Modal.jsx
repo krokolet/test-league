@@ -6,7 +6,7 @@ const Modal = ({ closeModal, src, comments, idPhoto }) => {
     return (
         <div className="modal">
             <div className="modal__window">
-                <div className="modal__columnLeft">
+                <div className="modal__window__columnLeft">
                     <img
                         className="modal__photo"
                         src={src}
