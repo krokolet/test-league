@@ -5,11 +5,14 @@ import sendComment from './../../apiFunctions/sendComment';
 import './formComment.scss';
 
 const FormComment = (idPhoto) => {
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register, reset } = useForm();
     const onSubmit = (values) =>
         sendComment(idPhoto, {
             name: values.name,
             comment: values.comment,
+        }).then(() => {
+            reset({});
+            alert('Комментарий отправлен.');
         });
 
     return (
