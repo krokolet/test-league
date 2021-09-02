@@ -6,10 +6,10 @@ import './formComment.scss';
 
 const FormComment = (idPhoto) => {
     const { handleSubmit, register, reset } = useForm();
-    const onSubmit = (values) =>
+    const onSubmit = ({ name, comment }) =>
         sendComment(idPhoto, {
-            name: values.name,
-            comment: values.comment,
+            name,
+            comment,
         }).then(() => {
             reset({});
             alert('Комментарий отправлен.');
