@@ -1,12 +1,14 @@
-import Modal from '../Modal/Modal';
 import './photo.scss';
 
-const Photo = ({ changeModalVisible }) => {
+const Photo = ({ openModal, src, setIdOpenedPhoto, id }) => {
     return (
         <img
-            onClick={() => changeModalVisible(true)}
+            onClick={() => {
+                setIdOpenedPhoto(id);
+                openModal();
+            }}
             className="photoPreview"
-            src="r.png"
+            src={src}
             alt="Фотография"
         />
     );

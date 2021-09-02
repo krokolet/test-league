@@ -2,14 +2,15 @@ import FormComment from '../FormComment/FormComment';
 import Comment from '../Comment/Comment';
 import './modal.scss';
 
-const Modal = ({ changeModalVisible }) => {
+const Modal = ({ closeModal, src }) => {
+    console.log(src);
     return (
         <div className="modal">
             <div className="modal__window">
                 <div className="modal__columnLeft">
                     <img
                         className="modal__photo"
-                        src="./r2.png"
+                        src={src}
                         alt="Фотография в полном размере"
                     />
                     <div className="modal__formComment">
@@ -23,7 +24,7 @@ const Modal = ({ changeModalVisible }) => {
                 </div>
                 <button
                     className="modal__closeBtn"
-                    onClick={() => changeModalVisible(false)}
+                    onClick={() => closeModal()}
                 />
             </div>
         </div>
